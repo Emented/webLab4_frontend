@@ -1,4 +1,4 @@
-.auth-page-box {
+.auth-body-box {
 
   display: flex;
   flex-direction: column;
@@ -7,11 +7,11 @@
   margin-left: 10px;
   margin-right: 10px;
 
-  .auth-page-box-wrapper {
+  .auth-body-box-wrapper {
     max-width: 600px;
     width: 100%;
 
-    .auth-page-tab-list-box {
+    .auth-body-tab-list-box {
       border-bottom: 1px;
       border-color: var(--secondary-border);
       margin-bottom: 15px;
@@ -20,7 +20,7 @@
 
   }
 
-  .auth-page-tab-panel {
+  .auth-body-tab-panel {
     padding: 0;
   }
 

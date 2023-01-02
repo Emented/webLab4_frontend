@@ -1,4 +1,4 @@
-import './AuthPage.scss'
+import './AuthBody.scss'
 
 import React from 'react';
 import {Box, Tab} from "@mui/material";
@@ -6,28 +6,28 @@ import LoginForm from "./components/login/LoginForm";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import RegisterForm from "./components/register/RegisterForm";
 
-const AuthPage = (props) => {
-    const [pageId, setPageId] = React.useState("1");
+const AuthBody = (props) => {
+    const [bodyId, setbodyId] = React.useState("1");
 
-    const handlePageChange = (event, newValue) => {
-        setPageId(newValue);
+    const handlebodyChange = (event, newValue) => {
+        setbodyId(newValue);
     };
 
     return (
-        <Box className="auth-page-box">
-            <div className="auth-page-box-wrapper">
+        <Box className="auth-body-box">
+            <div className="auth-body-box-wrapper">
                 <div className="tile">
-                    <TabContext value={pageId}>
-                        <Box className="auth-page-tab-list-box">
-                            <TabList variant="fullWidth" onChange={handlePageChange}>
+                    <TabContext value={bodyId}>
+                        <Box className="auth-body-tab-list-box">
+                            <TabList variant="fullWidth" onChange={handlebodyChange}>
                                 <Tab label="Register" value="1"/>
                                 <Tab label="Login" value="2"/>
                             </TabList>
                         </Box>
-                        <TabPanel className="auth-page-tab-panel" value="1">
+                        <TabPanel className="auth-body-tab-panel" value="1">
                             <RegisterForm/>
                         </TabPanel>
-                        <TabPanel className="auth-page-tab-panel" value="2">
+                        <TabPanel className="auth-body-tab-panel" value="2">
                             <LoginForm/>
                         </TabPanel>
                     </TabContext>
@@ -38,4 +38,4 @@ const AuthPage = (props) => {
 
 };
 
-export default AuthPage;
+export default AuthBody;
