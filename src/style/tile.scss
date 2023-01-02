@@ -4,7 +4,8 @@
 .tile {
   background-color: var(--secondary-background);
   border-radius: 10px;
-  padding: 20px;
+  border: solid var(--secondary-border) 1.5px;
+  padding: 25px;
   margin: 20px;
   display: flex;
   flex-direction: column;

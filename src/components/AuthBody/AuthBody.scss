@@ -8,20 +8,21 @@
   margin-right: 10px;
 
   .auth-body-box-wrapper {
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
 
     .auth-body-tab-list-box {
       border-bottom: 1px;
       border-color: var(--secondary-border);
       margin-bottom: 15px;
-      margin-top: 15px;
+      width: 100%;
     }
 
   }
 
   .auth-body-tab-panel {
     padding: 0;
+    width: 100%;
   }
 
 }
