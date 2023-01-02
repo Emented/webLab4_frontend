@@ -8,7 +8,7 @@ const LoginForm = (props) => {
 
     return (
         <div className="login-form">
-            <LoginFields email={"Some email!"} password={"Some password!"}/>
+            <LoginFields/>
             <LoginButtons loading={false}/>
         </div>
     );

@@ -8,7 +8,7 @@ const RegisterForm = (props) => {
 
     return (
         <div className="register-form">
-            <RegisterFields email={"Some email!"} password={"Some password!"} repeatedPassword={"Some password!"}/>
+            <RegisterFields/>
             <RegisterButtons loading={false}/>
         </div>
     );

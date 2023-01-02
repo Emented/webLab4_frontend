@@ -17,7 +17,9 @@ const Header = (props) => {
             </div>
 
             {props.isLoggedIn &&
-                <Button variant="contained" className="header-button" onClick={logOutAction}>Log out</Button>}
+                <Button variant="contained" className="header-button" onClick={logOutAction}>
+                    Log out
+                </Button>}
 
         </header>
     );

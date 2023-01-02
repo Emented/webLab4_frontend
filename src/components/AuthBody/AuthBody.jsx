@@ -1,7 +1,7 @@
 import './AuthBody.scss'
 
 import React from 'react';
-import {Box, Tab} from "@mui/material";
+import {Tab} from "@mui/material";
 import LoginForm from "./components/LoginForm/LoginForm";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
@@ -14,16 +14,16 @@ const AuthBody = (props) => {
     };
 
     return (
-        <Box className="auth-body-box">
-            <div className="auth-body-box-wrapper">
+        <div className="auth-body">
+            <div className="auth-body-wrapper">
                 <div className="tile">
                     <TabContext value={bodyId}>
-                        <Box className="auth-body-tab-list-box">
+                        <div className="auth-body-tab-list">
                             <TabList variant="fullWidth" onChange={handlebodyChange}>
                                 <Tab label="Register" value="1"/>
                                 <Tab label="Login" value="2"/>
                             </TabList>
-                        </Box>
+                        </div>
                         <TabPanel className="auth-body-tab-panel" value="1">
                             <RegisterForm/>
                         </TabPanel>
@@ -33,7 +33,7 @@ const AuthBody = (props) => {
                     </TabContext>
                 </div>
             </div>
-        </Box>
+        </div>
     );
 
 };

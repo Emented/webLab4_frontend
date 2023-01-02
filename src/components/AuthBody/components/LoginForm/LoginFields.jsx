@@ -1,15 +1,15 @@
 import React from 'react';
-import {Box, TextField} from "@mui/material";
+import {TextField} from "@mui/material";
 
 const LoginFields = (props) => {
 
     return (
-        <Box className="login-form-fields-box">
+        <div className="login-form-fields">
             <TextField className="login-form-fields-box-field" variant="outlined" name="username" value={props.email}
                        label="Username" type="email"/>
             <TextField className="login-form-fields-box-field" variant="outlined" name="password" value={props.password}
                        label="Password" type="password"/>
-        </Box>
+        </div>
     )
 
 };
