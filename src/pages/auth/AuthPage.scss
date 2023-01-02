@@ -1,0 +1,27 @@
+.auth-page-box {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  .auth-page-box-wrapper {
+    max-width: 600px;
+    width: 100%;
+
+    .auth-page-tab-list-box {
+      border-bottom: 1px;
+      border-color: var(--secondary-border);
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+  }
+
+  .auth-page-tab-panel {
+    padding: 0;
+  }
+
+}

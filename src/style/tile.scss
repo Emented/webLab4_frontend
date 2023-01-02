@@ -1,0 +1,19 @@
+@import "constants.scss";
+
+
+.tile {
+  background-color: var(--secondary-background);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+  flex: 1 1 auto;
+
+  &:hover {
+    box-shadow: 0 0 5px 0 var(--primary-text);
+  }
+}
