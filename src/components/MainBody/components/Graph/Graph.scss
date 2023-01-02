@@ -1,0 +1,33 @@
+.graph-wrapper {
+
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  overflow: hidden;
+  background-color: var(--secondary-background);
+  margin: 20px;
+
+  .graph-svg {
+
+    width: 300px;
+    height: 300px;
+    cursor: crosshair;
+
+    display: block;
+
+    line, path, polygon {
+      stroke: var(--primary-text);
+      fill: var(--areas-color);
+    }
+
+    text {
+      font-size: 17px;
+      font-weight: 800;
+      stroke: black;
+      fill: var(--secondary-text);
+    }
+  }
+}

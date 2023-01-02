@@ -2,9 +2,9 @@ import './AuthBody.scss'
 
 import React from 'react';
 import {Box, Tab} from "@mui/material";
-import LoginForm from "./components/login/LoginForm";
+import LoginForm from "./components/LoginForm/LoginForm";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
-import RegisterForm from "./components/register/RegisterForm";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
 
 const AuthBody = (props) => {
     const [bodyId, setbodyId] = React.useState("1");
