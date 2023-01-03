@@ -36,7 +36,7 @@ import {
     SET_Y
 } from "./actions";
 
-const date = new Date().toISOString().slice(0, 19).replace('T', ' ')
+const date = new Date()
 
 
 const initialState = {

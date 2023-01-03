@@ -32,7 +32,10 @@ const columns = [
         headerName: 'Check date',
         width: 256,
         align: 'center',
-        headerAlign: 'center'
+        headerAlign: 'center',
+        valueGetter: (params) => {
+            return new Date(params.row.checkDate).toLocaleString()
+        }
     },
     {
         field: 'executionTime',
