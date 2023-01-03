@@ -27,7 +27,7 @@ import {
     SET_REGISTER_FORM_PASSWORD,
     SET_REGISTER_FORM_PASSWORD_REPEAT,
     SET_REGISTER_FORM_SUCCESS_MESSAGE,
-    SET_TABLE_HITS_LIST,
+    SET_TABLE_HITS_LIST, SET_TABLE_IS_LOADING,
     SET_X,
     SET_Y
 } from "./actions";
@@ -36,6 +36,7 @@ import {
 const initialState = {
     loading: false,
     authFormIsLoading: false,
+    tableIsLoading: false,
     serverErrorMessage: '',
     hitsList: [],
     currentEnteredX: 0,
@@ -59,53 +60,53 @@ const reducer = (state = initialState, action) => {
         case FETCH_CHECK_HIT_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                tableIsLoading: false,
                 hitsList: [...state.hitsList, action.payload]
             }
         case FETCH_CHECK_HIT_FAILURE:
             return {
                 ...state,
-                loading: false,
-                errorMessage: action.payload
+                tableIsLoading: false,
+                formErrorMessage: action.payload
             }
         case FETCH_CHECK_HIT_REQUEST:
             return {
                 ...state,
-                loading: true
+                tableIsLoading: true
             }
         case FETCH_DELETE_ALL_HITS_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                tableIsLoading: false,
                 hitsList: []
             }
         case FETCH_DELETE_ALL_HITS_FAILURE:
             return {
                 ...state,
-                loading: false,
-                errorMessage: action.payload
+                tableIsLoading: false,
+                formErrorMessage: action.payload
             }
         case FETCH_DELETE_ALL_HITS_REQUEST:
             return {
                 ...state,
-                loading: true
+                tableIsLoading: true
             }
         case FETCH_GET_ALL_HITS_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                tableIsLoading: false,
                 hitsList: action.payload
             }
         case FETCH_GET_ALL_HITS_FAILURE:
             return {
                 ...state,
-                loading: false,
-                errorMessage: action.payload
+                tableIsLoading: false,
+                formErrorMessage: action.payload
             }
         case FETCH_GET_ALL_HITS_REQUEST:
             return {
                 ...state,
-                loading: true
+                tableIsLoading: true
             }
         case SET_X:
             return {
@@ -214,6 +215,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 registerFormSuccessMessage: action.payload,
+            }
+        }
+        case SET_TABLE_IS_LOADING: {
+            return {
+                ...state,
+                tableIsLoading: action.payload
             }
         }
 

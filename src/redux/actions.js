@@ -336,3 +336,23 @@ export const setRegisterFormSuccessMessage = (successMessage) => {
         type: SET_REGISTER_FORM_SUCCESS_MESSAGE, payload: successMessage,
     }
 }
+
+/**
+ * Why did I move this state to redux?
+ * The thing is, the table can be updated from graph or the form during it's loading.
+ * When the table is loading, we do not want to update it's state, because it will cause
+ * the table to show irrelevant data. So, we store the data in redux, and when the table
+ * is loading we prevent the user from updating the table.
+ *
+ * This approach is only works for one user experience.
+ *
+ * OC comment (by emented)
+ * @type {string}
+ */
+export const SET_TABLE_IS_LOADING = 'SET_TABLE_IS_LOADING';
+
+export const setTableIsLoading = (isLoading) => {
+    return {
+        type: SET_TABLE_IS_LOADING, payload: isLoading,
+    }
+}
