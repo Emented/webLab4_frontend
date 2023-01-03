@@ -7,7 +7,7 @@ const REFRESH_URI = "api/v1/auth/refresh";
 
 const AuthService = {
 
-    login: (email, password) => {
+    login: async (email, password) => {
         const requestBody = JSON.stringify({
             email: email,
             password: password
@@ -32,7 +32,7 @@ const AuthService = {
                 return Promise.reject(error);
             });
     },
-    register: (email, password) => {
+    register: async (email, password) => {
         const requestBody = JSON.stringify({
             email: email,
             password: password
@@ -43,7 +43,7 @@ const AuthService = {
             })
 
     },
-    refresh: () => {
+    refresh: async () => {
         const refreshToken = localStorage.getItem("refresh_token");
 
         if (refreshToken === null) {
@@ -84,3 +84,5 @@ const AuthService = {
     }
 
 }
+
+export default AuthService;
