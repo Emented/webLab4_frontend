@@ -2,11 +2,13 @@ import './Header.scss'
 
 import React from 'react';
 import {Button} from "@mui/material";
+import {connect} from "react-redux";
+import LogoutService from "../../service/LogoutService";
 
 const Header = (props) => {
 
     const logOutAction = () => {
-        console.log("logout");
+        LogoutService.logout();
     };
 
     return (
@@ -26,4 +28,10 @@ const Header = (props) => {
 
 };
 
-export default Header;
+const mapStateToHeaderProps = (state) => {
+    return {
+        isLoggedIn: state.isloggedIn,
+    }
+}
+
+export default connect(mapStateToHeaderProps)(Header);

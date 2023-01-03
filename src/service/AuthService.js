@@ -75,12 +75,7 @@ const AuthService = {
         return localStorage.getItem("access_token");
     },
     isLoggedIn: () => {
-        return localStorage.getItem("access_token") !== null;
-    },
-    logout: () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        localStorage.removeItem("email");
+        return localStorage.getItem("email") !== null;
     }
 
 }
