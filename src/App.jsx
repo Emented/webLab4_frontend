@@ -5,18 +5,22 @@ import AuthBody from "./components/AuthBody/AuthBody";
 import MainBody from "./components/MainBody/MainBody";
 import {Route, Routes} from "react-router-dom";
 import NotFound from "./components/NotFound/NotFound";
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
 
 const App = () => {
     return (
-        <div>
-            <Header isLoggedIn={true}/>
-            <Routes>
-                <Route path="/main" element={<MainBody/>}/>
-                <Route path="/auth" element={<AuthBody/>}/>
-                <Route path="/*" element={<NotFound/>}/>
-            </Routes>
-            <Footer/>
-        </div>
+        <Provider store={store}>
+            <div>
+                <Header/>
+                <Routes>
+                    <Route path="/main" element={<MainBody/>}/>
+                    <Route path="/auth" element={<AuthBody/>}/>
+                    <Route path="/*" element={<NotFound/>}/>
+                </Routes>
+                <Footer/>
+            </div>
+        </Provider>
     );
 };
 
