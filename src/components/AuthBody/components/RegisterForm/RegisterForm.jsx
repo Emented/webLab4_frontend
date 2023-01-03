@@ -14,7 +14,7 @@ const RegisterForm = (props) => {
         <div className="register-form">
             <RegisterFields/>
             <RegisterButtons loading={false}/>
-            <Snackbar open={!!props.successMessage}
+            <Snackbar open={props.successMessage !== ""}
                       autoHideDuration={6000}
                       onClose={() => props.setSuccessMessage("")}>
                 <Alert className="register-form-success-alert"
@@ -23,7 +23,7 @@ const RegisterForm = (props) => {
                     {props.successMessage}
                 </Alert>
             </Snackbar>
-            <Snackbar open={!!props.errorMessage}
+            <Snackbar open={props.errorMessage !== ""}
                       autoHideDuration={3000}
                       onClose={() => props.setErrorMessage("")}>
                 <Alert className="register-form-error-alert"

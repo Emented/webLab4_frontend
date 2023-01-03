@@ -15,7 +15,7 @@ const LoginForm = (props) => {
         <div className="login-form">
             <LoginFields/>
             <LoginButtons loading={false}/>
-            <Snackbar open={!!props.errorMessage}
+            <Snackbar open={props.errorMessage !== ""}
                       autoHideDuration={3000}
                       onClose={() => props.setErrorMessage("")}>
                 <Alert className="login-form-error-alert"
