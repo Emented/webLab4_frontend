@@ -1,6 +1,6 @@
 import React from 'react';
 import {FormControlLabel, Radio, RadioGroup, TextField} from "@mui/material";
-import {setR, setX, setY} from "../../../../redux/actions";
+import {fetchGetAllHitsByR, setR, setX, setY} from "../../../../redux/actions";
 import {connect} from "react-redux";
 
 const CoordinatesFields = (props) => {
@@ -18,6 +18,7 @@ const CoordinatesFields = (props) => {
                 break;
             case "rField":
                 props.setR(value);
+                props.fetchGetAllHitsByR(value);
                 break;
         }
     }
@@ -76,15 +77,10 @@ function mapStateToCoordinatesFieldsProps(state) {
 
 function mapDispatchToCoordinatesFieldsProps(dispatch) {
     return {
-        setX: (x) => {
-            dispatch(setX(x))
-        },
-        setY(y) {
-            dispatch(setY(y))
-        },
-        setR(r) {
-            dispatch(setR(r))
-        }
+        setX: (x) => dispatch(setX(x)),
+        setY: (y) => dispatch(setY(y)),
+        setR: (r) => dispatch(setR(r)),
+        fetchGetAllHitsByR: (radius) => dispatch(fetchGetAllHitsByR(radius))
     }
 }
 
