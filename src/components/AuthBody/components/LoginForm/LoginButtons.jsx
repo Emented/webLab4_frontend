@@ -7,8 +7,10 @@ const LoginButtons = (props) => {
 
     return (
         <div className="login-form-buttons">
-            <LoadingButton className="login-form-login-button" loading={props.loading}
-                           variant="outlined" onClick={() => props.login(props.email, props.password)}>
+            <LoadingButton className="login-form-login-button"
+                           loading={props.loading}
+                           variant="outlined"
+                           onClick={() => props.login(props.email, props.password)}>
                 Login
             </LoadingButton>
         </div>

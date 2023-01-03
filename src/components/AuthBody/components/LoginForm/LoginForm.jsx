@@ -15,14 +15,16 @@ const LoginForm = (props) => {
         <div className="login-form">
             <LoginFields/>
             <LoginButtons loading={false}/>
-            <Snackbar open={!!props.errorMessage} autoHideDuration={3000} onClose={() => {
-                props.setErrorMessage('')
-            }}>
-                <Alert className="login-form-error-alert" onClose={() => props.setErrorMessage("")} severity="error">
+            <Snackbar open={!!props.errorMessage}
+                      autoHideDuration={3000}
+                      onClose={() => props.setErrorMessage("")}>
+                <Alert className="login-form-error-alert"
+                       onClose={() => props.setErrorMessage("")}
+                       severity="error">
                     {props.errorMessage}
                 </Alert>
             </Snackbar>
-            {props.isLoggedIn &&  <Navigate to="/"/>}
+            {props.isLoggedIn && <Navigate to="/"/>}
         </div>
     );
 

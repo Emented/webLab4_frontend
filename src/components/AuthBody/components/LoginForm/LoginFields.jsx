@@ -19,10 +19,20 @@ const LoginFields = (props) => {
 
     return (
         <div className="login-form-fields">
-            <TextField className="login-form-fields-box-field" variant="outlined" name="email" value={props.email}
-                       label="Email" type="email" onChange={handleChange}/>
-            <TextField className="login-form-fields-box-field" variant="outlined" name="password" value={props.password}
-                       label="Password" type="password" onChange={handleChange}/>
+            <TextField className="login-form-fields-box-field"
+                       variant="outlined"
+                       name="email"
+                       value={props.email}
+                       label="Email"
+                       type="email"
+                       onChange={handleChange}/>
+            <TextField className="login-form-fields-box-field"
+                       variant="outlined"
+                       name="password"
+                       value={props.password}
+                       label="Password"
+                       type="password"
+                       onChange={handleChange}/>
         </div>
     )
 

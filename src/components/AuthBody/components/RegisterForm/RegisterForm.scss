@@ -19,5 +19,15 @@
 
   }
 
+  .register-form-error-alert {
+    width: 100%;
+    background-color: var(--error);
+  }
+
+  .register-form-success-alert {
+    width: 100%;
+    background-color: var(--hit-color);
+  }
+
 
 }
