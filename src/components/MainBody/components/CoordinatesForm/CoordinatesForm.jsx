@@ -5,7 +5,7 @@ import CoordinatesFields from "./CoordinatesFields";
 import CoordinatesButtons from "./CoordinatesButtons";
 import {setFormError} from "../../../../redux/actions";
 import {connect} from "react-redux";
-import {Snackbar, Alert} from "@mui/material";
+import {Alert, Snackbar} from "@mui/material";
 
 const CoordinatesForm = (props) => {
 

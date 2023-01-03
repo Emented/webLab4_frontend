@@ -1,5 +1,3 @@
-
-
 const HitCoordinatesValidationService = {
 
     validateCheckBox: (value, coordinateName) => {
