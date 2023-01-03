@@ -7,10 +7,10 @@ import {TabContext, TabList, TabPanel} from "@mui/lab";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 
 const AuthBody = (props) => {
-    const [bodyId, setbodyId] = React.useState("1");
+    const [bodyId, setBodyId] = React.useState("1");
 
-    const handlebodyChange = (event, newValue) => {
-        setbodyId(newValue);
+    const handleBodyChange = (event, newValue) => {
+        setBodyId(newValue);
     };
 
     return (
@@ -19,7 +19,7 @@ const AuthBody = (props) => {
                 <div className="tile">
                     <TabContext value={bodyId}>
                         <div className="auth-body-tab-list">
-                            <TabList variant="fullWidth" onChange={handlebodyChange}>
+                            <TabList variant="fullWidth" onChange={handleBodyChange}>
                                 <Tab label="Register" value="1"/>
                                 <Tab label="Login" value="2"/>
                             </TabList>
