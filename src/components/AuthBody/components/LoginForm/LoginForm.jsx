@@ -18,7 +18,7 @@ const LoginForm = (props) => {
             <Snackbar open={!!props.errorMessage} autoHideDuration={3000} onClose={() => {
                 props.setErrorMessage('')
             }}>
-                <Alert onClose={() => props.setErrorMessage("")} severity="error" sx={{width: '100%'}}>
+                <Alert className="login-form-error-alert" onClose={() => props.setErrorMessage("")} severity="error">
                     {props.errorMessage}
                 </Alert>
             </Snackbar>
