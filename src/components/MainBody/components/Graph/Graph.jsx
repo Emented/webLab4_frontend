@@ -1,5 +1,6 @@
 import './Graph.scss'
 
+import React from 'react';
 import {fetchGetAllHits, fetchGetAllHitsByR, fetchHitCheck} from "../../../../redux/actions";
 import {connect} from "react-redux";
 
