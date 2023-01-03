@@ -34,7 +34,6 @@ import {
 
 
 const initialState = {
-    loading: false,
     authFormIsLoading: false,
     tableIsLoading: false,
     serverErrorMessage: '',
