@@ -34,7 +34,7 @@ const RegisterFields = (props) => {
 };
 
 
-const mapStateToRegisterFormProps = (state) => {
+const mapStateToRegisterFieldsProps = (state) => {
     return {
         email: state.registerFormEmail,
         password: state.registerFormPassword,
@@ -42,7 +42,7 @@ const mapStateToRegisterFormProps = (state) => {
     }
 }
 
-function mapDispatchToRegisterFormProps(dispatch) {
+function mapDispatchToRegisterFieldsProps(dispatch) {
     return {
         setEmail: (email) => {
             dispatch(setRegisterFormEmail(email))
@@ -54,4 +54,4 @@ function mapDispatchToRegisterFormProps(dispatch) {
     }
 }
 
-export default connect(mapStateToRegisterFormProps, mapDispatchToRegisterFormProps)(RegisterFields);
+export default connect(mapStateToRegisterFieldsProps, mapDispatchToRegisterFieldsProps)(RegisterFields);

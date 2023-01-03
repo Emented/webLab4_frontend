@@ -1,7 +1,9 @@
 import './DataTable.scss'
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {DataGrid} from "@mui/x-data-grid";
+import {fetchGetAllHits} from "../../../../redux/actions";
+import {connect} from "react-redux";
 
 const columns = [
     {
@@ -66,10 +68,12 @@ const rows = [
 
 const DataTable = (props) => {
 
+    useEffect(props.fetchGetAllHits);
+
     return (
         <div className="data-grid">
             <DataGrid
-                rows={rows}
+                rows={props.tableHitsList}
                 columns={columns}
                 pageSize={4}
                 rowsPerPageOptions={[4]}
@@ -84,4 +88,18 @@ const DataTable = (props) => {
 
 };
 
-export default DataTable;
+const mapStateToDataTableProps = (state) => {
+    return {
+        tableHitsList: state.tableHitsList
+    }
+}
+
+const mapDispatchToDataTableProps = (dispatch) => {
+    return {
+        fetchGetAllHits: () => {
+            dispatch(fetchGetAllHits())
+        }
+    }
+}
+
+export default connect(mapStateToDataTableProps, mapDispatchToDataTableProps)(DataTable);

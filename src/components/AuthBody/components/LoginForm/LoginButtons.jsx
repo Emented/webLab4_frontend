@@ -30,7 +30,7 @@ const loginIfValid = (loginFunction, email, password, errorMessageSetter) => {
     }
 }
 
-const mapStateToLoginFormButtonsProps = (state) => {
+const mapStateToLoginButtonsProps = (state) => {
     return {
         email: state.loginFormEmail,
         password: state.loginFormPassword,
@@ -38,7 +38,7 @@ const mapStateToLoginFormButtonsProps = (state) => {
     }
 }
 
-const mapDispatchToLoginFormButtonsProps = (dispatch) => {
+const mapDispatchToLoginButtonsProps = (dispatch) => {
     return {
         login: (email, password) => {
             dispatch(fetchLogin(email, password))
@@ -49,4 +49,4 @@ const mapDispatchToLoginFormButtonsProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToLoginFormButtonsProps, mapDispatchToLoginFormButtonsProps)(LoginButtons);
+export default connect(mapStateToLoginButtonsProps, mapDispatchToLoginButtonsProps)(LoginButtons);

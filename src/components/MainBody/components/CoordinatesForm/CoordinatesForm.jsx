@@ -29,13 +29,13 @@ const CoordinatesForm = (props) => {
 
 };
 
-const mapStateToFormProps = (state) => {
+const mapStateToCoordinatesFormProps = (state) => {
     return {
         formError: state.formErrorMessage,
     }
 }
 
-const mapDispatchToFormProps = (dispatch) => {
+const mapDispatchToCoordinatesFormProps = (dispatch) => {
     return {
         setFormError: (formError) => {
             dispatch(setFormError(formError))
@@ -43,4 +43,4 @@ const mapDispatchToFormProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToFormProps, mapDispatchToFormProps)(CoordinatesForm);
+export default connect(mapStateToCoordinatesFormProps, mapDispatchToCoordinatesFormProps)(CoordinatesForm);

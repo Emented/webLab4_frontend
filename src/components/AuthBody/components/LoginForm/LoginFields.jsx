@@ -38,13 +38,13 @@ const LoginFields = (props) => {
 
 };
 
-const mapStateToLoginFormProps = (state) => {
+const mapStateToLoginFieldsProps = (state) => {
     return {
         email: state.loginFormEmail, password: state.loginFormPassword
     }
 }
 
-const mapDispatchToLoginFormProps = (dispatch) => {
+const mapDispatchToLoginFieldsProps = (dispatch) => {
     return {
         setEmail: (email) => {
             dispatch(setLoginFormEmail(email))
@@ -54,4 +54,4 @@ const mapDispatchToLoginFormProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToLoginFormProps, mapDispatchToLoginFormProps)(LoginFields);
+export default connect(mapStateToLoginFieldsProps, mapDispatchToLoginFieldsProps)(LoginFields);

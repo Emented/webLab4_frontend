@@ -37,13 +37,13 @@ const RegisterForm = (props) => {
 
 };
 
-const mapStateToRegisterFormFieldsProps = (state) => {
+const mapStateToRegisterFormProps = (state) => {
     return {
         errorMessage: state.registerFormErrorMessage, successMessage: state.registerFormSuccessMessage
     }
 }
 
-const mapDispatchToRegisterFormFieldsProps = (dispatch) => {
+const mapDispatchToRegisterFormProps = (dispatch) => {
     return {
         setErrorMessage: (errorMessage) => {
             dispatch(setRegisterFormError(errorMessage))
@@ -53,4 +53,4 @@ const mapDispatchToRegisterFormFieldsProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToRegisterFormFieldsProps, mapDispatchToRegisterFormFieldsProps)(RegisterForm);
+export default connect(mapStateToRegisterFormProps, mapDispatchToRegisterFormProps)(RegisterForm);

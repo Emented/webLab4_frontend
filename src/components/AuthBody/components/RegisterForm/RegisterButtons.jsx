@@ -37,7 +37,7 @@ const registerIfValid = (registerFunction, email, password, passwordRepeat, erro
     }
 }
 
-const mapStateToRegisterFormButtonsProps = (state) => {
+const mapStateToRegisterButtonsProps = (state) => {
     return {
         email: state.registerFormEmail,
         password: state.registerFormPassword,
@@ -46,7 +46,7 @@ const mapStateToRegisterFormButtonsProps = (state) => {
     }
 }
 
-const mapDispatchToRegisterFormButtonsProps = (dispatch) => {
+const mapDispatchToRegisterButtonsProps = (dispatch) => {
     return {
         register: (email, password) => {
             dispatch(fetchRegister(email, password))
@@ -57,4 +57,4 @@ const mapDispatchToRegisterFormButtonsProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToRegisterFormButtonsProps, mapDispatchToRegisterFormButtonsProps)(RegisterButtons);
+export default connect(mapStateToRegisterButtonsProps, mapDispatchToRegisterButtonsProps)(RegisterButtons);

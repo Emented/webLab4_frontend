@@ -30,14 +30,14 @@ const LoginForm = (props) => {
 
 };
 
-const mapStateToLoginFormFieldsProps = (state) => {
+const mapStateToLoginFormProps = (state) => {
     return {
         errorMessage: state.loginFormErrorMessage,
         isLoggedIn: state.isLoggedIn
     }
 }
 
-const mapDispatchToLoginFormFieldsProps = (dispatch) => {
+const mapDispatchToLoginFormProps = (dispatch) => {
     return {
         setErrorMessage: (errorMessage) => {
             dispatch(setLoginFormError(errorMessage))
@@ -45,4 +45,4 @@ const mapDispatchToLoginFormFieldsProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToLoginFormFieldsProps, mapDispatchToLoginFormFieldsProps)(LoginForm);
+export default connect(mapStateToLoginFormProps, mapDispatchToLoginFormProps)(LoginForm);

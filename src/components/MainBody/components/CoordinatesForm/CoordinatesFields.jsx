@@ -66,7 +66,7 @@ const CoordinatesFields = (props) => {
 
 };
 
-function mapStateToFormProps(state) {
+function mapStateToCoordinatesFieldsProps(state) {
     return {
         currentEnteredX: state.currentEnteredX,
         currentEnteredY: state.currentEnteredY,
@@ -74,7 +74,7 @@ function mapStateToFormProps(state) {
     }
 }
 
-function mapDispatchToFromProps(dispatch) {
+function mapDispatchToCoordinatesFieldsProps(dispatch) {
     return {
         setX: (x) => {
             dispatch(setX(x))
@@ -88,4 +88,4 @@ function mapDispatchToFromProps(dispatch) {
     }
 }
 
-export default connect(mapStateToFormProps, mapDispatchToFromProps)(CoordinatesFields);
+export default connect(mapStateToCoordinatesFieldsProps, mapDispatchToCoordinatesFieldsProps)(CoordinatesFields);

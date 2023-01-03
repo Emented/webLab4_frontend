@@ -7,6 +7,9 @@ import {
     FETCH_DELETE_ALL_HITS_FAILURE,
     FETCH_DELETE_ALL_HITS_REQUEST,
     FETCH_DELETE_ALL_HITS_SUCCESS,
+    FETCH_GET_ALL_HITS_BY_R_FAILURE,
+    FETCH_GET_ALL_HITS_BY_R_REQUEST,
+    FETCH_GET_ALL_HITS_BY_R_SUCCESS,
     FETCH_GET_ALL_HITS_FAILURE,
     FETCH_GET_ALL_HITS_REQUEST,
     FETCH_GET_ALL_HITS_SUCCESS,
@@ -16,7 +19,7 @@ import {
     FETCH_REGISTER_FAILURE,
     FETCH_REGISTER_REQUEST,
     FETCH_REGISTER_SUCCESS,
-    SET_FORM_ERROR,
+    SET_FORM_ERROR, SET_GRAPH_IS_LOADING,
     SET_LOGGED_IN,
     SET_LOGIN_FORM_EMAIL,
     SET_LOGIN_FORM_ERROR,
@@ -27,7 +30,8 @@ import {
     SET_REGISTER_FORM_PASSWORD,
     SET_REGISTER_FORM_PASSWORD_REPEAT,
     SET_REGISTER_FORM_SUCCESS_MESSAGE,
-    SET_TABLE_HITS_LIST, SET_TABLE_IS_LOADING,
+    SET_TABLE_HITS_LIST,
+    SET_TABLE_IS_LOADING,
     SET_X,
     SET_Y
 } from "./actions";
@@ -36,8 +40,10 @@ import {
 const initialState = {
     authFormIsLoading: false,
     tableIsLoading: false,
+    graphIsLoading: false,
     serverErrorMessage: '',
-    hitsList: [],
+    tableHitsList: [],
+    graphHitsList: [],
     currentEnteredX: 0,
     currentEnteredY: 0,
     currentEnteredR: 1,
@@ -56,148 +62,198 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_CHECK_HIT_SUCCESS:
+        case FETCH_CHECK_HIT_SUCCESS: {
+            return {
+                ...state,
+            }
+        }
+        case FETCH_CHECK_HIT_FAILURE: {
             return {
                 ...state,
                 tableIsLoading: false,
-                hitsList: [...state.hitsList, action.payload]
+                graphIsLoading: false,
+                formErrorMessage: action.payload
             }
-        case FETCH_CHECK_HIT_FAILURE:
+        }
+        case FETCH_CHECK_HIT_REQUEST: {
+            return {
+                ...state,
+                tableIsLoading: true,
+                graphIsLoading: true
+            }
+        }
+        case FETCH_DELETE_ALL_HITS_SUCCESS: {
+            return {
+                ...state,
+                tableIsLoading: false,
+                graphIsLoading: false,
+                tableHitsList: [],
+                graphHitsList: []
+            }
+        }
+        case FETCH_DELETE_ALL_HITS_FAILURE: {
+            return {
+                ...state,
+                tableIsLoading: false,
+                graphIsLoading: false,
+                formErrorMessage: action.payload
+            }
+        }
+        case FETCH_DELETE_ALL_HITS_REQUEST: {
+            return {
+                ...state,
+                graphIsLoading: true,
+                tableIsLoading: true
+            }
+        }
+        case FETCH_GET_ALL_HITS_SUCCESS: {
+            return {
+                ...state,
+                tableIsLoading: false,
+                tableHitsList: action.payload
+            }
+        }
+        case FETCH_GET_ALL_HITS_FAILURE: {
             return {
                 ...state,
                 tableIsLoading: false,
                 formErrorMessage: action.payload
             }
-        case FETCH_CHECK_HIT_REQUEST:
+        }
+        case FETCH_GET_ALL_HITS_REQUEST: {
             return {
                 ...state,
                 tableIsLoading: true
             }
-        case FETCH_DELETE_ALL_HITS_SUCCESS:
+        }
+        case FETCH_GET_ALL_HITS_BY_R_SUCCESS: {
             return {
                 ...state,
-                tableIsLoading: false,
-                hitsList: []
+                graphIsLoading: false,
+                graphHitsList: action.payload
             }
-        case FETCH_DELETE_ALL_HITS_FAILURE:
+        }
+        case FETCH_GET_ALL_HITS_BY_R_FAILURE: {
             return {
                 ...state,
-                tableIsLoading: false,
+                graphIsLoading: false,
                 formErrorMessage: action.payload
             }
-        case FETCH_DELETE_ALL_HITS_REQUEST:
+        }
+        case FETCH_GET_ALL_HITS_BY_R_REQUEST: {
             return {
                 ...state,
-                tableIsLoading: true
+                graphIsLoading: true
             }
-        case FETCH_GET_ALL_HITS_SUCCESS:
-            return {
-                ...state,
-                tableIsLoading: false,
-                hitsList: action.payload
-            }
-        case FETCH_GET_ALL_HITS_FAILURE:
-            return {
-                ...state,
-                tableIsLoading: false,
-                formErrorMessage: action.payload
-            }
-        case FETCH_GET_ALL_HITS_REQUEST:
-            return {
-                ...state,
-                tableIsLoading: true
-            }
-        case SET_X:
+        }
+        case SET_X: {
             return {
                 ...state,
                 currentEnteredX: action.payload,
             }
-        case SET_Y:
+        }
+        case SET_Y: {
             return {
                 ...state,
                 currentEnteredY: action.payload,
             }
-        case SET_R:
+        }
+        case SET_R: {
             return {
                 ...state,
                 currentEnteredR: action.payload,
             }
-        case SET_FORM_ERROR:
+        }
+        case SET_FORM_ERROR: {
             return {
                 ...state,
                 formErrorMessage: action.payload,
             }
-        case SET_LOGIN_FORM_PASSWORD:
+        }
+        case SET_LOGIN_FORM_PASSWORD: {
             return {
                 ...state,
                 loginFormPassword: action.payload,
             }
-        case SET_LOGIN_FORM_EMAIL:
+        }
+        case SET_LOGIN_FORM_EMAIL: {
             return {
                 ...state,
                 loginFormEmail: action.payload,
             }
-        case FETCH_LOGIN_REQUEST:
+        }
+        case FETCH_LOGIN_REQUEST: {
             return {
                 ...state,
                 authFormIsLoading: true,
             }
-        case FETCH_LOGIN_SUCCESS:
+        }
+        case FETCH_LOGIN_SUCCESS: {
             return {
                 ...state,
                 authFormIsLoading: false,
                 loginFormErrorMessage: '', isLoggedIn: true
             }
-        case FETCH_LOGIN_FAILURE:
+        }
+        case FETCH_LOGIN_FAILURE: {
             return {
                 ...state,
                 authFormIsLoading: false,
                 loginFormErrorMessage: action.payload,
             }
-        case SET_REGISTER_FORM_PASSWORD:
+        }
+        case SET_REGISTER_FORM_PASSWORD: {
             return {
                 ...state,
                 registerFormPassword: action.payload,
             }
-        case SET_REGISTER_FORM_PASSWORD_REPEAT:
+        }
+        case SET_REGISTER_FORM_PASSWORD_REPEAT: {
             return {
                 ...state,
                 registerFormPasswordRepeat: action.payload,
             }
-        case SET_REGISTER_FORM_EMAIL:
+        }
+        case SET_REGISTER_FORM_EMAIL: {
             return {
                 ...state,
                 registerFormEmail: action.payload,
             }
-        case FETCH_REGISTER_REQUEST:
+        }
+        case FETCH_REGISTER_REQUEST: {
             return {
                 ...state,
                 authFormIsLoading: true,
             }
-        case FETCH_REGISTER_SUCCESS:
+        }
+        case FETCH_REGISTER_SUCCESS: {
             return {
                 ...state,
                 authFormIsLoading: false,
                 registerFormSuccessMessage: 'The user has been successfully registered',
                 registerFormErrorMessage: ''
             }
-        case FETCH_REGISTER_FAILURE:
+        }
+        case FETCH_REGISTER_FAILURE: {
             return {
                 ...state,
                 authFormIsLoading: false,
                 registerFormErrorMessage: action.payload,
                 registerFormSuccessMessage: ''
             }
-        case SET_TABLE_HITS_LIST:
+        }
+        case SET_TABLE_HITS_LIST: {
             return {
                 ...state,
-                hitsList: action.payload,
+                tableHitsList: action.payload,
             }
-        case SET_LOGGED_IN:
+        }
+        case SET_LOGGED_IN: {
             return {
                 ...state,
                 isLoggedIn: action.payload,
             }
+        }
         case SET_REGISTER_FORM_ERROR: {
             return {
                 ...state,
@@ -220,6 +276,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 tableIsLoading: action.payload
+            }
+        }
+        case SET_GRAPH_IS_LOADING: {
+            return {
+                ...state,
+                graphIsLoading: action.payload
             }
         }
 

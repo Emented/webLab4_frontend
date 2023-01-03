@@ -1,6 +1,12 @@
 import React from 'react';
 import {Button} from "@mui/material";
-import {fetchDeleteAllHits, fetchHitCheck, setFormError} from "../../../../redux/actions";
+import {
+    fetchDeleteAllHits,
+    fetchGetAllHits,
+    fetchGetAllHitsByR,
+    fetchHitCheck,
+    setFormError
+} from "../../../../redux/actions";
 import {connect} from "react-redux";
 import HitCoordinatesValidationService from "../../../../service/HitCoordinatesValidationService";
 
@@ -15,7 +21,9 @@ const CoordinatesButtons = (props) => {
                         props.currentEnteredX,
                         props.currentEnteredY,
                         props.currentEnteredR,
-                        props.setFormError)}>
+                        props.setFormError,
+                        props.fetchGetAllHits,
+                        props.fetchGetAllHitsByR)}>
                 Check
             </Button>
             <Button className="coordinates-form-buttons-reset"
@@ -29,7 +37,7 @@ const CoordinatesButtons = (props) => {
 
 };
 
-const checkHitIfValid = (hitCheckFunction, x, y, r, errorMessageSetter) => {
+const checkHitIfValid = (hitCheckFunction, x, y, r, errorMessageSetter, tableUpdateFunction, graphUpdateFunction) => {
     const xValidationResult = HitCoordinatesValidationService.validateCheckBox(x, "X");
     const yValidationResult = HitCoordinatesValidationService.validateYCoordinate(y);
     const rValidationResult = HitCoordinatesValidationService.validateCheckBox(r, "R");
@@ -43,12 +51,14 @@ const checkHitIfValid = (hitCheckFunction, x, y, r, errorMessageSetter) => {
             r: r
         };
         hitCheckFunction(hit);
+        tableUpdateFunction();
+        graphUpdateFunction(r);
     }
 
 
 }
 
-const mapButtonStateToFormProps = (state) => {
+const mapStateToCoordinatesButtonsProps = (state) => {
     return {
         currentEnteredX: state.currentEnteredX,
         currentEnteredY: state.currentEnteredY,
@@ -57,12 +67,14 @@ const mapButtonStateToFormProps = (state) => {
     }
 }
 
-const mapDispatchToButtonsProps = (dispatch) => {
+const mapDispatchToCoordinatesButtonsProps = (dispatch) => {
     return {
         fetchCheckHit: (attempt) => dispatch(fetchHitCheck(attempt)),
         fetchDeleteAllHits: () => dispatch(fetchDeleteAllHits()),
+        fetchGetAllHits: () => dispatch(fetchGetAllHits()),
+        fetchGetAllHitsByR: (radius) => dispatch(fetchGetAllHitsByR(radius)),
         setFormError: (error) => dispatch(setFormError(error))
     }
 }
 
-export default connect(mapButtonStateToFormProps, mapDispatchToButtonsProps)(CoordinatesButtons);
+export default connect(mapStateToCoordinatesButtonsProps, mapDispatchToCoordinatesButtonsProps)(CoordinatesButtons);
