@@ -36,14 +36,24 @@ import {
     SET_Y
 } from "./actions";
 
+const date = new Date().toISOString().slice(0, 19).replace('T', ' ')
+
 
 const initialState = {
     authFormIsLoading: false,
     tableIsLoading: false,
     graphIsLoading: false,
     serverErrorMessage: '',
-    tableHitsList: [],
-    graphHitsList: [],
+    tableHitsList: [
+        {id: 1, x: 1, y: 1, r: 1, checkDate: date, executionTime: 120, status: true},
+        {id: 2, x: 2, y: 2, r: 1, checkDate: date, executionTime: 120, status: false},
+        {id: 3, x: 0, y: 0, r: 1, checkDate: date, executionTime: 120, status: true},
+    ],
+    graphHitsList: [
+        {id: 1, x: 1, y: 1, r: 1, checkDate: date, executionTime: 120, status: true},
+        {id: 2, x: 2, y: 2, r: 1, checkDate: date, executionTime: 120, status: false},
+        {id: 3, x: 0, y: 0, r: 1, checkDate: date, executionTime: 120, status: true},
+    ],
     currentEnteredX: 0,
     currentEnteredY: 0,
     currentEnteredR: 1,

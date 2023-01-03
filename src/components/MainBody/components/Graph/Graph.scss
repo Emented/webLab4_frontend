@@ -29,5 +29,15 @@
       stroke: black;
       fill: var(--secondary-text);
     }
+
+    .graph-svg-hit-success {
+      fill: var(--hit-color);
+      stroke: var(--hit-color);
+    }
+
+    .graph-svg-hit-miss {
+      fill: var(--miss-color);
+      stroke: var(--miss-color);
+    }
   }
 }

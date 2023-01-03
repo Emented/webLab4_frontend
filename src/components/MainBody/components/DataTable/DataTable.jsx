@@ -7,21 +7,21 @@ import {connect} from "react-redux";
 
 const columns = [
     {
-        field: 'xCoordinate',
+        field: 'x',
         headerName: 'X',
         width: 100,
         align: 'center',
         headerAlign: 'center'
     },
     {
-        field: 'yCoordinate',
+        field: 'y',
         headerName: 'Y',
         width: 100,
         align: 'center',
         headerAlign: 'center'
     },
     {
-        field: 'rCoordinate',
+        field: 'r',
         headerName: 'R',
         width: 100,
         align: 'center',
@@ -50,20 +50,6 @@ const columns = [
         valueGetter: (params) =>
             params.row.status ? "Hit" : "Miss",
     },
-];
-
-const date = new Date().toISOString().slice(0, 19).replace('T', ' ')
-
-const rows = [
-    {id: 1, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 1, checkDate: date, executionTime: 120, status: true},
-    {id: 2, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 2, checkDate: date, executionTime: 120, status: false},
-    {id: 3, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 3, checkDate: date, executionTime: 120, status: true},
-    {id: 4, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: -1, checkDate: date, executionTime: 120, status: false},
-    {id: 5, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 2, checkDate: date, executionTime: 120, status: true},
-    {id: 6, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 4, checkDate: date, executionTime: 120, status: true},
-    {id: 7, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 2, checkDate: date, executionTime: 120, status: true},
-    {id: 8, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 2, checkDate: date, executionTime: 120, status: true},
-    {id: 9, xCoordinate: 1.25, yCoordinate: 2.25, rCoordinate: 2, checkDate: date, executionTime: 120, status: true},
 ];
 
 const DataTable = (props) => {

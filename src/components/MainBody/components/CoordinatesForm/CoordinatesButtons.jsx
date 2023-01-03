@@ -69,11 +69,21 @@ const mapStateToCoordinatesButtonsProps = (state) => {
 
 const mapDispatchToCoordinatesButtonsProps = (dispatch) => {
     return {
-        fetchCheckHit: (attempt) => dispatch(fetchHitCheck(attempt)),
-        fetchDeleteAllHits: () => dispatch(fetchDeleteAllHits()),
-        fetchGetAllHits: () => dispatch(fetchGetAllHits()),
-        fetchGetAllHitsByR: (radius) => dispatch(fetchGetAllHitsByR(radius)),
-        setFormError: (error) => dispatch(setFormError(error))
+        fetchCheckHit: (hit) => {
+            dispatch(fetchHitCheck(hit))
+        },
+        fetchDeleteAllHits: () => {
+            dispatch(fetchDeleteAllHits())
+        },
+        fetchGetAllHits: () => {
+            dispatch(fetchGetAllHits())
+        },
+        fetchGetAllHitsByR: (radius) => {
+            dispatch(fetchGetAllHitsByR(radius))
+        },
+        setFormError: (error) => {
+            dispatch(setFormError(error))
+        }
     }
 }
 
