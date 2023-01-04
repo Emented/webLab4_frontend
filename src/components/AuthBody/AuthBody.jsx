@@ -5,8 +5,15 @@ import {Tab} from "@mui/material";
 import LoginForm from "./components/LoginForm/LoginForm";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
+import {Navigate} from "react-router-dom";
+import {connect} from "react-redux";
 
 const AuthBody = (props) => {
+
+    if (props.isLoggedIn) {
+        return <Navigate to="/main"/>
+    }
+
     const [bodyId, setBodyId] = React.useState("1");
 
     const handleBodyChange = (event, newValue) => {
@@ -38,4 +45,10 @@ const AuthBody = (props) => {
 
 };
 
-export default AuthBody;
+const mapStateToAuthBodyProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToAuthBodyProps)(AuthBody);

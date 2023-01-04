@@ -30,7 +30,7 @@ const Header = (props) => {
 
 const mapStateToHeaderProps = (state) => {
     return {
-        isLoggedIn: state.isloggedIn,
+        isLoggedIn: state.isLoggedIn,
     }
 }
 
