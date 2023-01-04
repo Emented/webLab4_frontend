@@ -1,10 +1,14 @@
 import './Graph.scss'
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {fetchGetAllHits, fetchGetAllHitsByR, fetchHitCheck} from "../../../../redux/actions";
 import {connect} from "react-redux";
 
 const Graph = (props) => {
+
+    useEffect(() => {
+        props.fetchGetAllHitsByR(props.currentEnteredR);
+    }, []);
 
 
     const handleEvent = (event) => {
