@@ -1,7 +1,7 @@
 import './Graph.scss'
 
 import React, {useEffect} from 'react';
-import {fetchGetAllHits, fetchGetAllHitsByR, fetchHitCheck} from "../../../../redux/actions";
+import {fetchGetAllHitsByR, fetchHitCheck} from "../../../../redux/actions";
 import {connect} from "react-redux";
 
 const Graph = (props) => {
@@ -22,8 +22,6 @@ const Graph = (props) => {
             r: props.currentEnteredR,
         }
         props.fetchCheckHit(hit);
-        props.fetchGetAllHits();
-        props.fetchGetAllHitsByR(props.currentEnteredR);
     }
 
     return (
@@ -95,9 +93,6 @@ const mapDispatchToGraphProps = (dispatch) => {
     return {
         fetchGetAllHitsByR: (radius) => {
             dispatch(fetchGetAllHitsByR(radius))
-        },
-        fetchGetAllHits: () => {
-            dispatch(fetchGetAllHits())
         },
         fetchCheckHit: (hit) => {
             dispatch(fetchHitCheck(hit))

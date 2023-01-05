@@ -2,8 +2,6 @@ import React from 'react';
 import {Button} from "@mui/material";
 import {
     fetchDeleteAllHits,
-    fetchGetAllHits,
-    fetchGetAllHitsByR,
     fetchHitCheck,
     setFormError
 } from "../../../../redux/actions";
@@ -21,9 +19,7 @@ const CoordinatesButtons = (props) => {
                         props.currentEnteredX,
                         props.currentEnteredY,
                         props.currentEnteredR,
-                        props.setFormError,
-                        props.fetchGetAllHits,
-                        props.fetchGetAllHitsByR)}>
+                        props.setFormError)}>
                 Check
             </Button>
             <Button className="coordinates-form-buttons-reset"
@@ -37,7 +33,7 @@ const CoordinatesButtons = (props) => {
 
 };
 
-const checkHitIfValid = (hitCheckFunction, x, y, r, errorMessageSetter, tableUpdateFunction, graphUpdateFunction) => {
+const checkHitIfValid = (hitCheckFunction, x, y, r, errorMessageSetter) => {
     const xValidationResult = HitCoordinatesValidationService.validateCheckBox(x, "X");
     const yValidationResult = HitCoordinatesValidationService.validateYCoordinate(y);
     const rValidationResult = HitCoordinatesValidationService.validateCheckBox(r, "R");
@@ -51,8 +47,6 @@ const checkHitIfValid = (hitCheckFunction, x, y, r, errorMessageSetter, tableUpd
             r: r
         };
         hitCheckFunction(hit);
-        tableUpdateFunction();
-        graphUpdateFunction(r);
     }
 
 
@@ -74,12 +68,6 @@ const mapDispatchToCoordinatesButtonsProps = (dispatch) => {
         },
         fetchDeleteAllHits: () => {
             dispatch(fetchDeleteAllHits())
-        },
-        fetchGetAllHits: () => {
-            dispatch(fetchGetAllHits())
-        },
-        fetchGetAllHitsByR: (radius) => {
-            dispatch(fetchGetAllHitsByR(radius))
         },
         setFormError: (error) => {
             dispatch(setFormError(error))

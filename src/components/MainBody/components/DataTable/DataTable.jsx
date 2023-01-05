@@ -51,13 +51,13 @@ const columns = [
         align: 'center',
         headerAlign: 'center',
         valueGetter: (params) =>
-            params.row.status ? "Hit" : "Miss",
+            params.row.status ? "HIT" : "MISS",
     },
 ];
 
 const DataTable = (props) => {
 
-    useEffect(props.fetchGetAllHits);
+    useEffect(props.fetchGetAllHits, []);
 
     return (
         <div className="data-grid">

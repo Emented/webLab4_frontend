@@ -9,13 +9,26 @@ export const fetchHitCheck = (hit) => {
     return (dispatch) => {
         dispatch(fetchCheckHitRequest());
         AppService.checkHit(hit)
-            .then(response => {
-                return response.data;
+            .then(() => {
+                dispatch(fetchCheckHitSuccess());
+                dispatch(fetchGetAllHitsRequest());
+                AppService.getAllHits()
+                    .then((response) => {
+                        dispatch(fetchGetAllHitsSuccess(response.data));
+                    })
+                    .catch((error) => {
+                        dispatch(fetchGetAllHitsFailure(error.message))
+                    });
+                dispatch(fetchGetAllHitsByRRequest());
+                AppService.getAllHitsByR(hit.r)
+                    .then((response) => {
+                        dispatch(fetchGetAllHitsByRSuccess(response.data));
+                    })
+                    .catch((error) => {
+                        dispatch(fetchGetAllHitsByRFailure(error.message));
+                    });
             })
-            .then((newHit) => {
-                dispatch(fetchCheckHitSuccess(newHit));
-            })
-            .catch(error => {
+            .catch((error) => {
                 dispatch(fetchCheckHitFailure(error.message));
             })
     }
@@ -27,9 +40,9 @@ const fetchCheckHitRequest = () => {
     }
 }
 
-const fetchCheckHitSuccess = (hit) => {
+const fetchCheckHitSuccess = () => {
     return {
-        type: FETCH_CHECK_HIT_SUCCESS, payload: hit,
+        type: FETCH_CHECK_HIT_SUCCESS,
     }
 }
 
