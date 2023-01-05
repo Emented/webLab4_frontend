@@ -24,7 +24,7 @@ const AuthService = {
             .then((data) => {
                 localStorage.setItem("access_token", data.accessToken);
                 localStorage.setItem("refresh_token", data.refreshToken);
-                localStorage.setItem("email", email);
+                localStorage.setItem("email", data.email);
                 return data;
             })
             .catch((error) => {
@@ -64,6 +64,7 @@ const AuthService = {
             })
             .then((data) => {
                 localStorage.setItem("access_token", data.accessToken);
+                localStorage.setItem("refresh_token", data.refreshToken);
                 return data
             })
             .catch((error) => {

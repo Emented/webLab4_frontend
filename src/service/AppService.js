@@ -1,20 +1,15 @@
 import AuthService from "./AuthService";
 import AxiosApi from "./AxiosApi";
+// import LogoutService from "./LogoutService";
 
 const HITS_URI = "api/v1/hits";
 
-const refreshHandler = (response, callback) => {
-    if (response.status === 403) {
-        return AuthService.refresh()
-            .then(() => {
-                    return callback();
-                },
-                () => {
-                    AuthService.logout();
-                })
-    } else {
-        return response;
-    }
+const refreshHandler = (callback) => {
+    return AuthService.refresh()
+        .then(() => {
+                return callback();
+            });
+
 };
 
 const AppService = {
@@ -27,10 +22,11 @@ const AppService = {
             }
         };
         return AxiosApi.post(HITS_URI, requestBody, config)
+            .catch((error) => {
+                return refreshHandler(AppService.checkHit(hit));
+            })
             .then((response) => {
-                return refreshHandler(response, () => {
-                    return AppService.checkHit(hit);
-                });
+                return response;
             });
     },
     getAllHits: async () => {
@@ -40,10 +36,11 @@ const AppService = {
             }
         };
         return AxiosApi.get(HITS_URI, config)
+            .catch((error) => {
+                return refreshHandler(AppService.getAllHits());
+            })
             .then((response) => {
-                return refreshHandler(response, () => {
-                    return AppService.getAllHits();
-                });
+                return response;
             });
     },
     getAllHitsByR: async (radius) => {
@@ -53,10 +50,11 @@ const AppService = {
             }
         };
         return AxiosApi.get(`${HITS_URI}/${radius}`, config)
+            .catch((error) => {
+                return refreshHandler(AppService.getAllHitsByR(radius));
+            })
             .then((response) => {
-                return refreshHandler(response, () => {
-                    return AppService.getAllHitsByR(radius);
-                });
+                return response;
             });
     },
     deleteAllHits: async () => {
@@ -66,11 +64,12 @@ const AppService = {
             }
         };
         return AxiosApi.delete(HITS_URI, config)
-            .then((response) => {
-                return refreshHandler(response, () => {
-                    return AppService.deleteAllHits();
-                });
+            .catch((error) => {
+                return refreshHandler(AppService.deleteAllHits());
             })
+            .then((response) => {
+                return response;
+            });
     }
 };
 
