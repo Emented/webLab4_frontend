@@ -7,8 +7,8 @@ const HITS_URI = "api/v1/hits";
 const refreshHandler = (callback) => {
     return AuthService.refresh()
         .then(() => {
-                return callback();
-            });
+            return callback();
+        });
 
 };
 
@@ -23,7 +23,7 @@ const AppService = {
         };
         return AxiosApi.post(HITS_URI, requestBody, config)
             .catch((error) => {
-                return refreshHandler(AppService.checkHit(hit));
+                return refreshHandler(() => AppService.checkHit(hit));
             })
             .then((response) => {
                 return response;
@@ -37,7 +37,7 @@ const AppService = {
         };
         return AxiosApi.get(HITS_URI, config)
             .catch((error) => {
-                return refreshHandler(AppService.getAllHits());
+                return refreshHandler(() => AppService.getAllHits());
             })
             .then((response) => {
                 return response;
@@ -51,7 +51,7 @@ const AppService = {
         };
         return AxiosApi.get(`${HITS_URI}/${radius}`, config)
             .catch((error) => {
-                return refreshHandler(AppService.getAllHitsByR(radius));
+                return refreshHandler(() => AppService.getAllHitsByR(radius));
             })
             .then((response) => {
                 return response;
@@ -65,7 +65,7 @@ const AppService = {
         };
         return AxiosApi.delete(HITS_URI, config)
             .catch((error) => {
-                return refreshHandler(AppService.deleteAllHits());
+                return refreshHandler(() => AppService.deleteAllHits());
             })
             .then((response) => {
                 return response;

@@ -1,10 +1,6 @@
 import React from 'react';
 import {Button} from "@mui/material";
-import {
-    fetchDeleteAllHits,
-    fetchHitCheck,
-    setFormError
-} from "../../../../redux/actions";
+import {fetchDeleteAllHits, fetchHitCheck, setFormError} from "../../../../redux/actions";
 import {connect} from "react-redux";
 import HitCoordinatesValidationService from "../../../../service/HitCoordinatesValidationService";
 
