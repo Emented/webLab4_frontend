@@ -62,7 +62,7 @@ const AuthService = {
                 if (response.status === 200) {
                     return response.data;
                 } else {
-                    return Promise.reject("Failed to ");
+                    return Promise.reject("Failed to refresh");
                 }
             })
             .then((data) => {

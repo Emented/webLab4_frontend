@@ -9,28 +9,31 @@ export const fetchHitCheck = (hit) => {
     return (dispatch) => {
         dispatch(fetchCheckHitRequest());
         AppService.checkHit(hit)
+            .catch((error) => {
+                dispatch(fetchCheckHitFailure(error.message));
+                return Promise.reject(error.message);
+            })
             .then(() => {
                 dispatch(fetchCheckHitSuccess());
                 dispatch(fetchGetAllHitsRequest());
                 AppService.getAllHits()
+                    .catch((error) => {
+                        dispatch(fetchGetAllHitsFailure(error.message));
+                        return Promise.reject(error.message);
+                    })
                     .then((response) => {
                         dispatch(fetchGetAllHitsSuccess(response.data));
-                    })
-                    .catch((error) => {
-                        dispatch(fetchGetAllHitsFailure(error.message))
                     });
                 dispatch(fetchGetAllHitsByRRequest());
                 AppService.getAllHitsByR(hit.r)
-                    .then((response) => {
-                        dispatch(fetchGetAllHitsByRSuccess(response.data));
-                    })
                     .catch((error) => {
                         dispatch(fetchGetAllHitsByRFailure(error.message));
+                        return Promise.reject(error.message);
+                    })
+                    .then((response) => {
+                        dispatch(fetchGetAllHitsByRSuccess(response.data));
                     });
-            })
-            .catch((error) => {
-                dispatch(fetchCheckHitFailure(error.message));
-            })
+            });
     }
 }
 
@@ -60,12 +63,13 @@ export const fetchDeleteAllHits = () => {
     return (dispatch) => {
         dispatch(fetchDeleteAllHitsRequest());
         AppService.deleteAllHits()
-            .then(() => {
-                dispatch(fetchDeleteAllHitsSuccess());
-            })
             .catch(error => {
                 dispatch(fetchDeleteAllHitsFailure(error.message));
+                return Promise.reject(error.message);
             })
+            .then(() => {
+                dispatch(fetchDeleteAllHitsSuccess());
+            });
     }
 }
 
@@ -95,15 +99,17 @@ export const fetchGetAllHits = () => {
     return (dispatch) => {
         dispatch(fetchGetAllHitsRequest());
         AppService.getAllHits()
+            .catch(error => {
+                dispatch(fetchGetAllHitsFailure(error.message));
+                return Promise.reject(error.message);
+            })
             .then(response => {
                 return response.data;
             })
             .then((hits) => {
                 dispatch(fetchGetAllHitsSuccess(hits));
-            })
-            .catch(error => {
-                dispatch(fetchGetAllHitsFailure(error.message));
-            })
+            });
+
     }
 }
 
@@ -133,15 +139,16 @@ export const fetchGetAllHitsByR = (radius) => {
     return (dispatch) => {
         dispatch(fetchGetAllHitsByRRequest());
         AppService.getAllHitsByR(radius)
+            .catch(error => {
+                dispatch(fetchGetAllHitsByRFailure(error.message));
+                return Promise.reject(error.message);
+            })
             .then(response => {
                 return response.data;
             })
             .then((hits) => {
                 dispatch(fetchGetAllHitsByRSuccess(hits));
-            })
-            .catch(error => {
-                dispatch(fetchGetAllHitsByRFailure(error.message));
-            })
+            });
     }
 }
 
@@ -226,15 +233,16 @@ export const fetchLogin = (email, password) => {
     return (dispatch) => {
         dispatch(fetchLoginRequest());
         AuthService.login(email, password)
+            .catch(error => {
+                dispatch(fetchLoginFailure(error.message));
+                return Promise.reject(error.message);
+            })
             .then((result) => {
                 if (result) {
                     dispatch(fetchLoginSuccess());
                 } else {
                     dispatch(fetchLoginFailure("Wrong username or password"));
                 }
-            })
-            .catch(error => {
-                dispatch(fetchLoginFailure(error.message));
             })
     }
 }
@@ -287,16 +295,17 @@ export const fetchRegister = (email, password) => {
     return (dispatch) => {
         dispatch(fetchRegisterRequest());
         AuthService.register(email, password)
+            .catch(error => {
+                dispatch(fetchRegisterFailure(error.message));
+                return Promise.reject(error.message);
+            })
             .then((result) => {
                 if (result) {
                     dispatch(fetchRegisterSuccess());
                 } else {
                     dispatch(fetchRegisterFailure("User with such username already exists"));
                 }
-            })
-            .catch(error => {
-                dispatch(fetchRegisterFailure(error.message));
-            })
+            });
     }
 }
 
