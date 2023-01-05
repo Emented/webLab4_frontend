@@ -29,7 +29,7 @@ const AuthService = {
             })
             .catch((error) => {
                 console.log(error);
-                return Promise.reject(error);
+                return Promise.reject(error.response.data);
             });
     },
     register: async (email, password) => {
@@ -40,6 +40,9 @@ const AuthService = {
         return AxiosApi.post(REGISTER_URI, requestBody)
             .then((response) => {
                 return response.status === 200;
+            }).catch((error) => {
+                console.log(error);
+                return Promise.reject(error.response.data);
             })
 
     },
@@ -69,7 +72,7 @@ const AuthService = {
             })
             .catch((error) => {
                 console.log(error);
-                return Promise.reject(error);
+                return Promise.reject(error.response.data);
             })
     },
     getCurrentAccessToken: () => {

@@ -110,7 +110,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 tableIsLoading: false,
-                tableHitsList: action.payload
+                tableHitsList: action.payload.reverse()
             }
         }
         case FETCH_GET_ALL_HITS_FAILURE: {
