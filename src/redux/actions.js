@@ -10,16 +10,16 @@ export const fetchHitCheck = (hit) => {
         dispatch(fetchCheckHitRequest());
         AppService.checkHit(hit)
             .catch((error) => {
-                dispatch(fetchCheckHitFailure(error.message));
-                return Promise.reject(error.message);
+                dispatch(fetchCheckHitFailure(error.data.message));
+                return false;
             })
             .then(() => {
                 dispatch(fetchCheckHitSuccess());
                 dispatch(fetchGetAllHitsRequest());
                 AppService.getAllHits()
                     .catch((error) => {
-                        dispatch(fetchGetAllHitsFailure(error.message));
-                        return Promise.reject(error.message);
+                        dispatch(fetchGetAllHitsFailure(error.data.message));
+                        return Promise.reject(error.data.message);
                     })
                     .then((response) => {
                         dispatch(fetchGetAllHitsSuccess(response.data));
@@ -27,8 +27,8 @@ export const fetchHitCheck = (hit) => {
                 dispatch(fetchGetAllHitsByRRequest());
                 AppService.getAllHitsByR(hit.r)
                     .catch((error) => {
-                        dispatch(fetchGetAllHitsByRFailure(error.message));
-                        return Promise.reject(error.message);
+                        dispatch(fetchGetAllHitsByRFailure(error.data.message));
+                        return Promise.reject(error.data.message);
                     })
                     .then((response) => {
                         dispatch(fetchGetAllHitsByRSuccess(response.data));
@@ -64,8 +64,8 @@ export const fetchDeleteAllHits = () => {
         dispatch(fetchDeleteAllHitsRequest());
         AppService.deleteAllHits()
             .catch(error => {
-                dispatch(fetchDeleteAllHitsFailure(error.message));
-                return Promise.reject(error.message);
+                dispatch(fetchDeleteAllHitsFailure(error.data.message));
+                return Promise.reject(error.data.message);
             })
             .then(() => {
                 dispatch(fetchDeleteAllHitsSuccess());
@@ -100,8 +100,8 @@ export const fetchGetAllHits = () => {
         dispatch(fetchGetAllHitsRequest());
         AppService.getAllHits()
             .catch(error => {
-                dispatch(fetchGetAllHitsFailure(error.message));
-                return Promise.reject(error.message);
+                dispatch(fetchGetAllHitsFailure(error.data.message));
+                return Promise.reject(error.data.message);
             })
             .then(response => {
                 return response.data;
@@ -140,8 +140,8 @@ export const fetchGetAllHitsByR = (radius) => {
         dispatch(fetchGetAllHitsByRRequest());
         AppService.getAllHitsByR(radius)
             .catch(error => {
-                dispatch(fetchGetAllHitsByRFailure(error.message));
-                return Promise.reject(error.message);
+                dispatch(fetchGetAllHitsByRFailure(error.data.message));
+                return Promise.reject(error.data.message);
             })
             .then(response => {
                 return response.data;
@@ -234,8 +234,8 @@ export const fetchLogin = (email, password) => {
         dispatch(fetchLoginRequest());
         AuthService.login(email, password)
             .catch(error => {
-                dispatch(fetchLoginFailure(error.message));
-                return Promise.reject(error.message);
+                dispatch(fetchLoginFailure(error.data.message));
+                return Promise.reject(error.data.message);
             })
             .then((result) => {
                 if (result) {
@@ -296,8 +296,8 @@ export const fetchRegister = (email, password) => {
         dispatch(fetchRegisterRequest());
         AuthService.register(email, password)
             .catch(error => {
-                dispatch(fetchRegisterFailure(error.message));
-                return Promise.reject(error.message);
+                dispatch(fetchRegisterFailure(error.data.message));
+                return Promise.reject(error.data.message);
             })
             .then((result) => {
                 if (result) {

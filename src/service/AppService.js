@@ -22,12 +22,18 @@ const AppService = {
             }
         };
         return AxiosApi.post(HITS_URI, requestBody, config)
-            .catch((error) => {
-                return refreshHandler(() => AppService.checkHit(hit));
-            })
             .then((response) => {
-                return response;
+                if (response.status === 200) {
+                    return response;
+                }
+            })
+            .catch((error) => {
+                if (error.response.status === 401) {
+                    return refreshHandler(() => AppService.checkHit(hit));
+                }
+                return Promise.reject(error.response)
             });
+
     },
     getAllHits: async () => {
         const config = {
@@ -37,7 +43,10 @@ const AppService = {
         };
         return AxiosApi.get(HITS_URI, config)
             .catch((error) => {
-                return refreshHandler(() => AppService.getAllHits());
+                if (error.response.status === 401) {
+                    return refreshHandler(() => AppService.getAllHits());
+                }
+                return Promise.reject(error.response)
             })
             .then((response) => {
                 return response;
@@ -47,11 +56,17 @@ const AppService = {
         const config = {
             headers: {
                 Authorization: `Bearer ${AuthService.getCurrentAccessToken()}`
+            },
+            params: {
+                radius: radius
             }
         };
-        return AxiosApi.get(`${HITS_URI}/${radius}`, config)
+        return AxiosApi.get(`${HITS_URI}`, config)
             .catch((error) => {
-                return refreshHandler(() => AppService.getAllHitsByR(radius));
+                if (error.response.status === 401) {
+                    return refreshHandler(() => AppService.getAllHitsByR(radius));
+                }
+                return Promise.reject(error.response)
             })
             .then((response) => {
                 return response;
@@ -65,7 +80,10 @@ const AppService = {
         };
         return AxiosApi.delete(HITS_URI, config)
             .catch((error) => {
-                return refreshHandler(() => AppService.deleteAllHits());
+                if (error.response.status === 401) {
+                    return refreshHandler(() => AppService.deleteAllHits());
+                }
+                return Promise.reject(error.response)
             })
             .then((response) => {
                 return response;

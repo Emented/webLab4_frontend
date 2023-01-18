@@ -35,7 +35,15 @@ const AuthService = {
     register: async (email, password) => {
         const requestBody = JSON.stringify({
             email: email,
-            password: password
+            password: password,
+            roles: [
+                {
+                    name: "USER_ROLE"
+                },
+                {
+                    name: "ADMIN_ROLE"
+                }
+            ]
         });
         return AxiosApi.post(REGISTER_URI, requestBody)
             .then((response) => {
